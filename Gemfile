@@ -14,6 +14,10 @@ gem 'paperclip'
 gem 'shareable'
 gem 'impressionist'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms'
+
+# Social Login
+gem 'omniauth'
+gem 'omniauth-facebook'
  
 group :development do
 	gem 'thin'
@@ -23,7 +27,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
