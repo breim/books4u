@@ -1,0 +1,46 @@
+<%= render 'navbar/user' %>
+<div class="container">
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Professors</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Usuário</th>
+      <th>Email Insper</th>
+      <th>Preço</th>
+      <th>Nota PI</th>
+      <th>Nota PF</th>
+      <th>CR</th>
+      <th>Ranking</th>
+      <th>Horário</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @professors.each do |professor| %>
+      <tr>
+        <td><%= professor.user %></td>
+        <td><%= professor.email %></td>
+        <td><%= professor.price %></td>
+        <td><%= professor.nota_pi %></td>
+        <td><%= professor.nota_pf %></td>
+        <td><%= professor.cr %></td>
+        <td><%= professor.ranking %></td>
+        <td><%= professor.horario %></td>
+        <td><%= link_to 'Show', professor %></td>
+        <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
+        <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Adicionar Professor', new_professor_path %>
+
+</div>

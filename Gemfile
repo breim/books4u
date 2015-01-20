@@ -14,6 +14,7 @@ gem 'paperclip'
 gem 'shareable'
 gem 'impressionist'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms'
+gem 'font-awesome-sass', '~> 4.2.0'
 
 # Social Login
 gem 'omniauth'

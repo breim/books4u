@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @professor.user %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @professor.email %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @professor.price %>
+</p>
+
+<p>
+  <strong>Nota pi:</strong>
+  <%= @professor.nota_pi %>
+</p>
+
+<p>
+  <strong>Nota pf:</strong>
+  <%= @professor.nota_pf %>
+</p>
+
+<p>
+  <strong>Cr:</strong>
+  <%= @professor.cr %>
+</p>
+
+<p>
+  <strong>Ranking:</strong>
+  <%= @professor.ranking %>
+</p>
+
+<p>
+  <strong>Horario:</strong>
+  <%= @professor.horario %>
+</p>
+
+<%= link_to 'Edit', edit_professor_path(@professor) %> |
+<%= link_to 'Back', professors_path %>

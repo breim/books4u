@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  email: MyString
+  price: MyString
+  nota_pi: 9.99
+  nota_pf: 9.99
+  cr: 9.99
+  ranking: 1
+  horario: MyText
+
+two:
+  user_id: 
+  email: MyString
+  price: MyString
+  nota_pi: 9.99
+  nota_pf: 9.99
+  cr: 9.99
+  ranking: 1
+  horario: MyText

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :professors, path: :professores
+
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
   
   root 'pages#index'
