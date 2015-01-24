@@ -15,6 +15,7 @@ gem 'shareable'
 gem 'impressionist'
 gem 'bootstrap_form', github: 'bootstrap-ruby/rails-bootstrap-forms'
 gem 'font-awesome-sass', '~> 4.2.0'
+gem 'cocoon'
 
 # Social Login
 gem 'omniauth'
