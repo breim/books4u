@@ -1,15 +1,4 @@
 <%= bootstrap_form_for(@professor) do |f| %>
-  <% if @professor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@professor.errors.count, "error") %> prohibited this professor from being saved:</h2>
-
-      <ul>
-      <% @professor.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="field">
     <%= f.text_field :email %>
@@ -33,6 +22,6 @@
     <%= f.text_area :horario %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Salvar", :class => "btn btn-success btn-lg pull-right" %>
   </div>
 <% end %>
