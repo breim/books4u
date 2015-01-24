@@ -1,15 +1,11 @@
 <%= render 'navbar/user' %>
 <div class="container">
-	<div class="row">
-		<div class="col-sm-12">
-			<h4>Cadastre-se como professor</h4>
-
-			<%= render 'form' %>
-
+	<div class="container-box">
+		<div class="row">
+			<div class="col-sm-12">
+				<h4>Cadastre-se como professor</h4>
+				<%= render 'form' %>
+			</div>
 		</div>
 	</div>
-	
-	<%= link_to 'Back', professors_path, :class => "back" %>
-
 </div>
-

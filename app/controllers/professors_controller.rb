@@ -1,6 +1,7 @@
 class ProfessorsController < ApplicationController
   before_action :set_professor, only: [:show, :edit, :update, :destroy]
-  #before_action :authenticate_user!
+  before_action :check_user_professor, only: [:new, :create]
+  before_action :authenticate_user!
 
   respond_to :html
 
@@ -39,11 +40,18 @@ class ProfessorsController < ApplicationController
   end
 
   private
-    def set_professor
-      @professor = Professor.find(params[:id])
+  def set_professor
+    @professor = Professor.find(params[:id])
+  end
+  
+  def check_user_professor
+    @user_has_professor = Professor.where(:user_id => current_user.id).first
+    if @user_has_professor.present?
+      redirect_to professors_path, notice: "Você já é cadastrado como professor"
     end
+  end
 
-    def professor_params
-      params.require(:professor).permit(:user_id, :email, :price, :nota_pi, :nota_pf, :cr, :ranking, :horario)
-    end
+  def professor_params
+    params.require(:professor).permit(:user_id, :email, :price, :nota_pi, :nota_pf, :cr, :ranking, :horario)
+  end
 end
