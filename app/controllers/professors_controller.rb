@@ -52,6 +52,6 @@ class ProfessorsController < ApplicationController
   end
 
   def professor_params
-    params.require(:professor).permit(:user_id, :email, :price, :nota_pi, :nota_pf, :cr, :ranking, :horario)
+    params.require(:professor).permit(:user_id, :email, :price, :nota_pi, :nota_pf, :cr, :ranking, :horario, :image, :major, :semester, courses_attributes: [:id, :name,:nota_pf,:nota_pi, :done, :_destroy])
   end
 end

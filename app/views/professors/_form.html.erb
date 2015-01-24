@@ -1,27 +1,69 @@
 <%= bootstrap_form_for(@professor) do |f| %>
+<div class="field">
+  <%= f.text_field :email,:autofocus => true,:value => current_user.email %>
+</div>
 
-  <div class="field">
-    <%= f.text_field :email %>
+<%= f.file_field :image %>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="form-group">
+      <% if @professor.image.present? %>
+      <%= image_tag @professor.image.url(:medium),:class => "img-responsive img-profile-preload hide-change" %>
+      <% end %>
+      <img id="image-box" src="#" alt="" class="img-responsive img-profile-preload" />
+    </div>
   </div>
-  <div class="field">
-    <%= f.text_field :price %>
+</div>
+
+<legend>Matérias que você da aula</legend>
+
+<div id="courses">
+  <%= f.fields_for :courses do |course| %>
+  <%= render 'course_fields', :f => course %>
+  <% end %>
+  <div class="form-group">
+    <%= link_to_add_association 'Adicionar matéria', f, :courses, :class => "btn btn-success" %>
   </div>
-  <div class="field">
-    <%= f.text_field :nota_pi %>
-  </div>
-  <div class="field">
-    <%= f.text_field :nota_pf %>
-  </div>
-  <div class="field">
-    <%= f.text_field :cr %>
-  </div>
-  <div class="field">
-    <%= f.number_field :ranking %>
-  </div>
-  <div class="field">
-    <%= f.text_area :horario %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Salvar", :class => "btn btn-success btn-lg pull-right" %>
-  </div>
+</div>
+<hr>
+
+<div class="field">
+  <%= f.select :major, options_for_select(["Administração", "Economia"],@professor.major), { prompt: "Selecione...."} %>   
+</div>
+
+<div class="field">
+  <%= f.select :semester, options_for_select([ 1,2,3,4,5,6,7,8],@professor.semester), { prompt: "Selecione...."} %>   
+</div>
+
+<div class="field">
+  <%= f.text_field :price %>
+</div>
+
+<div class="field">
+  <%= f.text_field :cr %>
+</div>
+<div class="field">
+  <%= f.number_field :ranking %>
+</div>
+<div class="field">
+  <%= f.text_area :horario %>
+</div>
+<div class="actions">
+  <%= f.submit "Salvar", :class => "btn btn-success btn-lg pull-right" %>
+</div>
 <% end %>
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#image-box').attr('src', e.target.result);
+        $('.hide-change').hide();
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $("#professor_image").change(function(){
+    readURL(this);
+  });
+</script>

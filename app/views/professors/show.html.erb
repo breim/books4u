@@ -1,44 +1,70 @@
-<p id="notice"><%= notice %></p>
+<%= render 'navbar/user' %>
 
-<p>
-  <strong>User:</strong>
-  <%= @professor.user %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="container-box">
 
-<p>
-  <strong>Email:</strong>
-  <%= @professor.email %>
-</p>
+        <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @professor.price %>
-</p>
+        <div class="row">
 
-<p>
-  <strong>Nota pi:</strong>
-  <%= @professor.nota_pi %>
-</p>
+          <div class="col-sm-3">
+        
+          <%= image_tag @professor.image.url(:medium) %>
+            <p>
+              <strong>User:</strong>
+              <%= @professor.user.name %>
+            </p>
 
-<p>
-  <strong>Nota pf:</strong>
-  <%= @professor.nota_pf %>
-</p>
+            <p>
+              <strong>Email:</strong>
+              <%= @professor.email %>
+            </p>
 
-<p>
-  <strong>Cr:</strong>
-  <%= @professor.cr %>
-</p>
+          </div>
+          <div class="col-sm-9">
+            <p>
+              <strong>Price:</strong>
+              <%= @professor.price %>
+            </p>
 
-<p>
-  <strong>Ranking:</strong>
-  <%= @professor.ranking %>
-</p>
+            <p>
+              <strong>Nota pi:</strong>
+              <%= @professor.nota_pi %>
+            </p>
 
-<p>
-  <strong>Horario:</strong>
-  <%= @professor.horario %>
-</p>
+            <p>
+              <strong>Nota pf:</strong>
+              <%= @professor.nota_pf %>
+            </p>
 
-<%= link_to 'Edit', edit_professor_path(@professor) %> |
-<%= link_to 'Back', professors_path %>
+            <p>
+              <strong>Cr:</strong>
+              <%= @professor.cr %>
+            </p>
+
+            <p>
+              <strong>Ranking:</strong>
+              <%= @professor.ranking %>
+            </p>
+
+            <p>
+              <strong>Horario:</strong>
+              <%= @professor.horario %>
+            </p>
+
+            <%= @professor.semester %>
+          <% @professor.courses.each do |course| %>
+          <%= course.name %> | <%= course.nota_pi %> | <%= course.nota_pf %><br>
+          <% end %>
+          
+          </div>
+        </div>
+
+        <%= link_to 'Edit', edit_professor_path(@professor) %> |
+        <%= link_to 'Back', professors_path %>
+      </div>
+    </div> 
+  </div>
+</div>

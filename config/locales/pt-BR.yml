@@ -108,7 +108,7 @@ pt-BR:
       exclusion: não está disponível
       greater_than: deve ser maior que %{count}
       greater_than_or_equal_to: deve ser maior ou igual a %{count}
-      inclusion: não está incluído na lista
+      inclusion: o valor deve ser entre de 0 até 10
       invalid: Não é válido
       less_than: deve ser menor que %{count}
       less_than_or_equal_to: deve ser menor ou igual a %{count}
@@ -211,47 +211,25 @@ pt-BR:
         name: "Nome"
         remember_me: "Lembrar"
         password_confirmation: "Confirmação da senha"
-      company:
-        name: "Nome da startup"
-        slogan: "Slogan"
-        site_url: "Site"
-        location: "Localização (endereço)"
-        category_id: "Categoria"
-        type_id: "Ramo"
-        image: "Logo da startup"
-        stage: "Estágio"
-        foundation_date: "Data de fundação"
-        team_qtd: "Total de membros"
-        facebook_url: "Página do Facebok"
-        twitter_url: "Página do Twitter"
-        linkedin_url: "Página do Linkedin"
-        description: "Descrição"
-        team_description: "Descrição dos membros"
-        problem_solution: "Problema resolvido"
-        products_and_services: "Produtos e serviços"
-        target_audience: "Público Alvo"
-        marketing_strategies: "Estratégias de Vendas e Marketing "
-        business_model: "Modelo de Negócio"
-        competitors: "Competidores"
-        competitive_advantages: "Vantagens Competitivas"
       professor:
-        price: "Preço"
-        email: "Email Insper (NomeAluno@insper.al.edu.br)"
+        price: "Preço por aula"
+        email: "Seu email para contato"
         nota_pi: "Nota PI"
         nota_pf: "Nota PF"
         cr: "CR"
         ranking: "Ranking"
-        horario: "Horário"
+        horario: "Horário disponível"
+        image: "Sua foto para apresentação"
+        semester: "Semestre que você cursa"
+        major: "Graduação"
       product:
         name: "Nome do produto"
         description: "Descrição"
         price: "Preço"
         image: "Foto do produto"
         market_id: "Mercado do produto"
-      post:
-        content: "Texto"
-        company_id: "Startup"
-        youtube_url: "Link do youtube"
+      course:
+        name: "Matéria"
       member:
         user_id: "Membro"
         position_id: "Cargo"

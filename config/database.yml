@@ -5,7 +5,6 @@ default: &default
   username: <%= ENV['BOOKS_DATABASE_USER'] %>
   password: <%= ENV['BOOKS_DATABASE_PASSWORD'] %>
   host: localhost
- 
 development:
   <<: *default
   database: books_development

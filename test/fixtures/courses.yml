@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  nota_pi: 1.5
+  nota_pf_float: MyString
+  done: false
+  professor_id: 
+
+two:
+  name: MyString
+  nota_pi: 1.5
+  nota_pf_float: MyString
+  done: false
+  professor_id: 

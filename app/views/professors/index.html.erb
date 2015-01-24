@@ -1,45 +1,59 @@
 <%= render 'navbar/user' %>
-<div class="container">
+<div id="container">
+  <div class="container">
+    <p id="notice"><%= notice %></p>
+    <h3>Professores</h3>
+    <% @professors.each do |professor| %>  
+    <% 100.times do |i| %>
+    <div class="item">
+      <div class="panel panel-default">
+        <%= link_to (image_tag professor.image.url(:medium)),professor %>
+        <div class="panel-body">
+          <%= link_to professor.user.name,professor %>
+          <h5>R$ <%= professor.price %></h5>
+          
 
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Professors</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Usuário</th>
-      <th>Email Insper</th>
-      <th>Preço</th>
-      <th>Nota PI</th>
-      <th>Nota PF</th>
-      <th>CR</th>
-      <th>Ranking</th>
-      <th>Horário</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @professors.each do |professor| %>
-      <tr>
-        <td><%= professor.user %></td>
-        <td><%= professor.email %></td>
-        <td><%= professor.price %></td>
-        <td><%= professor.nota_pi %></td>
-        <td><%= professor.nota_pf %></td>
-        <td><%= professor.cr %></td>
-        <td><%= professor.ranking %></td>
-        <td><%= professor.horario %></td>
-        <td><%= link_to 'Show', professor %></td>
-        <td><%= link_to 'Edit', edit_professor_path(professor) %></td>
-        <td><%= link_to 'Destroy', professor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+          <hr>
+          <% professor.courses.each do |course| %>
+           <strong><%= course.name %></strong>,<%= course.nota_pi %> - <%= course.nota_pf %>
+          <% end %>
+          R$ <%= professor.price %>
+          <%= professor.nota_pi %>
+          <%= professor.nota_pf %>
+          <%= professor.cr %>
+          <%= professor.ranking %>
+        </div>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-
+    <% end %>
+  </div>
 </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#container").gridalicious({
+      animate: true,
+      width: 200
+    })
+  });
+</script>
+
+<script>
+/* $(document).ready(function(e){
+    
+    $(".containerBox .more").on("click",function(e){
+        var elem = $(this).prev(".box");
+        if(elem.data("closed")){            
+            elem.css({"max-height":"none"}).data("closed",false);
+            $(this).text("Menos");
+        } else {
+            elem.css({"max-height":100}).data("closed",true);            
+            $(this).text("Mais");
+            $("body,html").animate({scrollTop:$(this).position().top})
+        };
+        e.preventDefault();
+    }).prev(".box").data("closed",true);
+    
+}) */
+</script>

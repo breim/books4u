@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120194641) do
+ActiveRecord::Schema.define(version: 20150124201331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "name"
+    t.float    "nota_pi"
+    t.float    "nota_pf"
+    t.boolean  "done"
+    t.integer  "professor_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "courses", ["professor_id"], name: "index_courses_on_professor_id", using: :btree
 
   create_table "professors", force: :cascade do |t|
     t.integer  "user_id"
@@ -25,8 +37,13 @@ ActiveRecord::Schema.define(version: 20150120194641) do
     t.decimal  "cr"
     t.integer  "ranking"
     t.text     "horario"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.string   "major"
+    t.integer  "semester"
   end
 
   add_index "professors", ["user_id"], name: "index_professors_on_user_id", using: :btree
@@ -56,5 +73,6 @@ ActiveRecord::Schema.define(version: 20150120194641) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "courses", "professors"
   add_foreign_key "professors", "users"
 end
