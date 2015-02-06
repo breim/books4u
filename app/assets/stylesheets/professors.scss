@@ -28,3 +28,8 @@ label.required:after {
 .courses-more{
 	margin-top: -5px;
 }
+
+.navbar-user .navbar-nav > .active > a, .navbar-user .navbar-nav > .active > a:hover, .navbar-user .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #8fd400;
+}

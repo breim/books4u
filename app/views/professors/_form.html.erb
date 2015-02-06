@@ -1,11 +1,10 @@
 <%= bootstrap_form_for(@professor) do |f| %>
 <div class="field">
-  <%= f.text_field :name,:autofocus => true,:value => current_user.name %>
+  <%= f.text_field :name,:autofocus => true %>
 </div>
 
-
 <div class="field">
-  <%= f.text_field :email,:value => current_user.email %>
+  <%= f.text_field :email %>
 </div>
 
 <%= f.file_field :image %>

@@ -1,3 +1,4 @@
+<%= content_for :title, "InsProf | #{@professor.name}" %>
 <%= render 'navbar/user' %>
 <div class="container">
   <div class="row">
@@ -6,18 +7,18 @@
         <p id="notice"><%= notice %></p>
         <div class="row">
           <div class="col-sm-2">
-          <%= image_tag @professor.image.url(:medium),:class => "img-rounded img-responsive" %>
+            <%= image_tag @professor.image.url(:medium),:class => "img-rounded img-responsive" %>
             <div class="row"> 
               <div id="recommended-hide">
                 <%= render 'professors/recommended' %>
               </div>
               <div id="recommended"></div>
-
               <div id="unrecommended-hide">
                 <%= render 'professors/unrecommended' %>
               </div>
               <div id="unrecommended"></div>
             </div>
+            <%= render_shareable :buttons=> ['facebook'], :url=> request.original_url, :facebook=> {:send=> true,:share => true, :url=> request.original_url, :action => 'recommend'} %>
           </div>
           <div class="col-sm-5">
             <div class="form-group">
@@ -59,12 +60,11 @@
                 <td><%= course.nota_pf %></td>
               </tr>
               <% end %>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div> 
-</div>

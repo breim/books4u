@@ -1,13 +1,14 @@
 class ProfessorsController < ApplicationController
   before_action :set_professor, only: [:show, :edit, :update, :destroy,:recommended, :unrecommended]
   before_action :check_user_professor, only: [:new, :create]
-  before_action :check_security, only: [:edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :check_security, only: [:edit, :update, :destroy, :create]
+  before_action :check_user_liker, only: [:recommended, :unrecommended]
+
 
   respond_to :html
 
   def index
-    @professors = Professor.all
+    @professors = Professor.all.order("created_at desc").page(params[:page]).per(70)
     respond_with(@professors)
   end
 
@@ -60,19 +61,29 @@ class ProfessorsController < ApplicationController
 
   private
   def set_professor
-    @professor = Professor.find(params[:id])
+    @professor = Professor.friendly.find(params[:id])
   end
   
   def check_user_professor
-    @user_has_professor = Professor.where(:user_id => current_user.id).first
-    if @user_has_professor.present?
-      redirect_to professors_path, notice: "Você já é cadastrado como professor"
+    if current_user 
+      @user_has_professor = Professor.where(:user_id => current_user.id).first
+      if @user_has_professor.present?
+        redirect_to professors_path, notice: "Você já é cadastrado como professor"
+      end
+    else
+      redirect_to  new_user_session_path, notice: "Você precisa estar logado"
+    end
+  end
+
+  def check_user_liker
+    unless current_user
+      redirect_to  new_user_session_path, notice: "Você precisa estar logado"
     end
   end
 
   def check_security
-    if @user_has_professor = Professor.where(:user_id => current_user.id).first.id != current_user.id && current_user.admin == false
-      redirect_to professors_path, notice: "Você não é o dono do cadastro !!"
+    if @user_has_professor = Professor.where(:user_id => current_user.id).first.id != current_user.id && current_user.admin == false || current_user.present? == false
+      redirect_to root_path, notice: "Você não é o dono do cadastro !!"
     end
   end
 

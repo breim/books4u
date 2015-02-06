@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">MyProf</a>
+                <a class="navbar-brand page-scroll" href="#page-top">InsProf</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -21,19 +21,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Serviços</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#portfolio">Faculdades</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">Sobre Nós</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#team">Equipe</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contato</a>
+                        <a class="page-scroll" href="#contact" data-toggle="modal" data-target="#myModal">Contato</a>
                     </li>
                 </ul>
             </div>
@@ -46,15 +34,31 @@
     <header>
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">Precisando de um professor particular?</div>
-                <div class="intro-heading">Marque uma aula já!</div>
+                <div class="intro-lead-in">Precisa tirar notas boas em alguma matéria?</div>
+                <div class="intro-heading">Marque uma aula com um aluno que manda bem nela!</div>
                 <%= link_to 'Professor', new_user_session_path,:class => "page-scroll btn btn-xl btn-edit"  %>
-                <%= link_to 'Aluno', new_user_session_path,:class => "page-scroll btn btn-xl btn-edit"  %>
+                <%= link_to 'Aluno', professors_path,:class => "page-scroll btn btn-xl btn-edit"  %>
             </div>
         </div>
     </header>
 
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Contato</h4>
+                </div>
+                <div class="modal-body">
+                    Envie dúvias, feedbacks ou comentários para:<br />
+                    contato.insprof@gmail.com
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
-
-</html>

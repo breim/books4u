@@ -2,11 +2,15 @@
 	<center>
 		<h4>
 			<%= @professor.unrecommended_count.to_i %>
-			<% if @professor.followed_by?(current_user) %>
-			<%= link_to "<i class='fa fa-thumbs-o-down'></i>".html_safe,unrecommended_path(@professor),:remote => true %>
-			<% else %>
-			<%= link_to "<i class='fa fa-thumbs-o-down'></i>".html_safe,unrecommended_path(@professor),:remote => true %>
-			<% end %>      
+			<% if current_user %>
+				<% if @professor.followed_by?(current_user) %>
+				<%= link_to "<i class='fa fa-thumbs-o-down'></i>".html_safe,unrecommended_path(@professor),:remote => true %>
+				<% else %>
+				<%= link_to "<i class='fa fa-thumbs-o-down'></i>".html_safe,unrecommended_path(@professor),:remote => true %>
+				<% end %>
+				<% else %>
+				<%= link_to "<i class='fa fa-thumbs-o-down'></i>".html_safe, new_user_session_path %>
+			<% end %>
 		</h4>
 	</center>
 </div>

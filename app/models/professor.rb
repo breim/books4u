@@ -44,4 +44,17 @@ class Professor < ActiveRecord::Base
   acts_as_likeable # Can be recomended
   acts_as_followable # Tricker for not recommended
 
+
+  # FriendlyID Gem
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  def slug_candidates
+    [:name,
+      [:name, :id]
+    ]
+  end
+  # end
+
+
 end

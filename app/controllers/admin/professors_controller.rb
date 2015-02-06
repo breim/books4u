@@ -3,7 +3,7 @@ class Admin::ProfessorsController < Admin::AdminController
 	respond_to :html
 
 	def index
-		@professors = Professor.all.order("created_at desc")
+		@professors = Professor.all.order("created_at desc").page(params[:page]).per(20)
 		respond_with(@professors)
 	end
 	

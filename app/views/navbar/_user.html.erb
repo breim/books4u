@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <%= link_to "MyProf", professors_path,:class => "navbar-brand"  %>
+      <%= link_to "InsProf", professors_path,:class => "navbar-brand"  %>
     </div>
 
     <%= form_tag  searchable_path, :class => "navbar-form navbar-left",:role => "search", method: :get do %>
@@ -26,6 +26,7 @@
     <ul class="nav navbar-nav">
     </ul>
       <ul class="nav navbar-nav navbar-right">
+      <% if current_user %>
         <li class="dropdown">
           <a href="#" data-toggle="dropdown" class="dropdown-toggle"><%= current_user.email %><b class="caret"></b></a>
           <ul class="dropdown-menu">
@@ -37,13 +38,14 @@
             <li><%= link_to "Sair", destroy_user_session_path, :method => :delete %></li>
           </ul>
         </li>
-
         <% if Professor.where(:user_id => current_user.id).first.present? %>
-        <li class="active"><%= link_to "Editar professor",edit_professor_path(current_user.professor) %></li>
+          <li class="active"><%= link_to "Editar professor",edit_professor_path(current_user.professor) %></li>
         <% else %>
-        <li class="active"><%= link_to "Sou professor",new_professor_path %></li>
+        <li class="active"><%= link_to "Registre-se como professor",new_professor_path %></li>
         <% end %>
-
+        <% else %>
+        <li class="active"><%= link_to "Registre-se como professor",new_professor_path %></li>
+     <% end %>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
