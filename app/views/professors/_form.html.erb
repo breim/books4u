@@ -1,6 +1,11 @@
 <%= bootstrap_form_for(@professor) do |f| %>
 <div class="field">
-  <%= f.text_field :email,:autofocus => true,:value => current_user.email %>
+  <%= f.text_field :name,:autofocus => true,:value => current_user.name %>
+</div>
+
+
+<div class="field">
+  <%= f.text_field :email,:value => current_user.email %>
 </div>
 
 <%= f.file_field :image %>
@@ -40,14 +45,13 @@
 </div>
 
 <div class="field">
-  <%= f.text_field :cr %>
-</div>
-<div class="field">
-  <%= f.number_field :ranking %>
-</div>
-<div class="field">
   <%= f.text_area :horario %>
 </div>
+
+<div class="field">
+  <%= f.text_area :description %>
+</div>
+
 <div class="actions">
   <%= f.submit "Salvar", :class => "btn btn-success btn-lg pull-right" %>
 </div>

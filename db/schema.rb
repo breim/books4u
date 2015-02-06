@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150124201331) do
+ActiveRecord::Schema.define(version: 20150205025730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,39 @@ ActiveRecord::Schema.define(version: 20150124201331) do
 
   add_index "courses", ["professor_id"], name: "index_courses_on_professor_id", using: :btree
 
+  create_table "follows", force: :cascade do |t|
+    t.string   "follower_type"
+    t.integer  "follower_id"
+    t.string   "followable_type"
+    t.integer  "followable_id"
+    t.datetime "created_at"
+  end
+
+  add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
+  add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
+
+  create_table "likes", force: :cascade do |t|
+    t.string   "liker_type"
+    t.integer  "liker_id"
+    t.string   "likeable_type"
+    t.integer  "likeable_id"
+    t.datetime "created_at"
+  end
+
+  add_index "likes", ["likeable_id", "likeable_type"], name: "fk_likeables", using: :btree
+  add_index "likes", ["liker_id", "liker_type"], name: "fk_likes", using: :btree
+
+  create_table "mentions", force: :cascade do |t|
+    t.string   "mentioner_type"
+    t.integer  "mentioner_id"
+    t.string   "mentionable_type"
+    t.integer  "mentionable_id"
+    t.datetime "created_at"
+  end
+
+  add_index "mentions", ["mentionable_id", "mentionable_type"], name: "fk_mentionables", using: :btree
+  add_index "mentions", ["mentioner_id", "mentioner_type"], name: "fk_mentions", using: :btree
+
   create_table "professors", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "email"
@@ -37,28 +70,40 @@ ActiveRecord::Schema.define(version: 20150124201331) do
     t.decimal  "cr"
     t.integer  "ranking"
     t.text     "horario"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.string   "major"
     t.integer  "semester"
+    t.integer  "recommended_count",   default: 0
+    t.integer  "unrecommended_count", default: 0
+    t.text     "description"
+    t.string   "name"
   end
 
   add_index "professors", ["user_id"], name: "index_professors_on_user_id", using: :btree
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "search_id"
+    t.string   "search_model"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "nickname"
     t.string   "facebook_image"
     t.string   "gender"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -68,6 +113,8 @@ ActiveRecord::Schema.define(version: 20150124201331) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.boolean  "admin",                  default: false
+    t.boolean  "blocked",                default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

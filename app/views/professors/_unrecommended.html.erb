@@ -1,0 +1,12 @@
+<div class="col-sm-6 col-xs-2">
+	<center>
+		<h4>
+			<%= @professor.unrecommended_count.to_i %>
+			<% if @professor.followed_by?(current_user) %>
+			<%= link_to "<i class='fa fa-thumbs-o-down'></i>".html_safe,unrecommended_path(@professor),:remote => true %>
+			<% else %>
+			<%= link_to "<i class='fa fa-thumbs-o-down'></i>".html_safe,unrecommended_path(@professor),:remote => true %>
+			<% end %>      
+		</h4>
+	</center>
+</div>

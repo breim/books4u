@@ -2,7 +2,6 @@
 <div id="container">
   <div class="container">
     <p id="notice"><%= notice %></p>
-    <h3>Professores</h3>
     <% @professors.each do |professor| %>  
     <% 100.times do |i| %>
     <div class="item">
@@ -10,50 +9,67 @@
         <%= link_to (image_tag professor.image.url(:medium)),professor %>
         <div class="panel-body">
           <%= link_to professor.user.name,professor %>
+          <div class="pull-right">
+            <div class="text text-muted" >
+              <small><%= "#{icon('thumbs-up')} #{professor.recommended_count}".html_safe  %></small>
+              <small><%= "#{icon('thumbs-down')} #{professor.unrecommended_count}".html_safe  %></small>
+            </div>
+          </div>
           <h5>R$ <%= professor.price %></h5>
-          
-
           <hr>
-          <% professor.courses.each do |course| %>
-           <strong><%= course.name %></strong>,<%= course.nota_pi %> - <%= course.nota_pf %>
-          <% end %>
-          R$ <%= professor.price %>
-          <%= professor.nota_pi %>
-          <%= professor.nota_pf %>
-          <%= professor.cr %>
-          <%= professor.ranking %>
-        </div>
+          <div class="courses">
+            <div class="text-center text-muted courses-more">
+             <small> Ver mais </small>
+             <hr>
+           </div>
+           <table class="table table table-hover">
+            <thead>
+              <tr>
+                <th><small>Curso</small></th>
+                <th><small>PI</small></th>
+                <th><small>PF</small></th>
+              </tr>
+            </thead>
+            <tbody>
+             <% professor.courses.each do |course| %>
+             <tr>
+              <td><small><%= course.name %></small></td>
+              <td><small><%= course.nota_pi %></small></td>
+              <td><small><%= course.nota_pf %></small></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
-    <% end %>
-    <% end %>
   </div>
+</div>
+<% end %>
+<% end %>
 </div>
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
     $("#container").gridalicious({
       animate: true,
-      width: 200
+      width: 200,
+      height: 300
     })
   });
 </script>
-
 <script>
-/* $(document).ready(function(e){
-    
-    $(".containerBox .more").on("click",function(e){
-        var elem = $(this).prev(".box");
-        if(elem.data("closed")){            
-            elem.css({"max-height":"none"}).data("closed",false);
-            $(this).text("Menos");
-        } else {
-            elem.css({"max-height":100}).data("closed",true);            
-            $(this).text("Mais");
-            $("body,html").animate({scrollTop:$(this).position().top})
-        };
-        e.preventDefault();
-    }).prev(".box").data("closed",true);
-    
-}) */
+  $('.courses').hover(
+    function () {
+      $(this).animate({
+        height: '200px',
+        width: '150px'
+      }, 1);
+    },
+
+    function () {
+      $(this).animate({
+        height: '15px',
+        width: '150px'
+      }, 1);
+    });
 </script>

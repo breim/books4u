@@ -5,6 +5,7 @@
 			<div class="col-sm-12">
 				<h4>Editar meu cadastro como professor</h4>
 				<%= render 'form' %>
+				<%= link_to 'Cancelar meu cadastro como professor', @professor, method: :delete, data: { confirm: 'Tem certeza ???!' },:class => "pull-left btn btn-danger" %>
 			</div>
 		</div>
 	</div>

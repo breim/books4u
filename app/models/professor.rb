@@ -1,4 +1,9 @@
 class Professor < ActiveRecord::Base
+
+  # After and before validations
+  include Searchable
+
+
   # Relations
   belongs_to :user
 
@@ -10,8 +15,8 @@ class Professor < ActiveRecord::Base
   validates :price, presence: true
   validates :semester, presence: true
   validates :major, presence: true
-
   validates :horario, presence: true
+  validates :name, presence: true
 
   # PaperClip + ftp
   has_attached_file :image,:styles => {
@@ -35,5 +40,8 @@ class Professor < ActiveRecord::Base
   end
   # End --- 
 
+  # Gem socialization
+  acts_as_likeable # Can be recomended
+  acts_as_followable # Tricker for not recommended
 
 end

@@ -1,70 +1,70 @@
 <%= render 'navbar/user' %>
-
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
       <div class="container-box">
-
         <p id="notice"><%= notice %></p>
-
         <div class="row">
+          <div class="col-sm-2">
+          <%= image_tag @professor.image.url(:medium),:class => "img-rounded img-responsive" %>
+            <div class="row"> 
+              <div id="recommended-hide">
+                <%= render 'professors/recommended' %>
+              </div>
+              <div id="recommended"></div>
 
-          <div class="col-sm-3">
-        
-          <%= image_tag @professor.image.url(:medium) %>
-            <p>
-              <strong>User:</strong>
-              <%= @professor.user.name %>
-            </p>
-
-            <p>
-              <strong>Email:</strong>
-              <%= @professor.email %>
-            </p>
-
+              <div id="unrecommended-hide">
+                <%= render 'professors/unrecommended' %>
+              </div>
+              <div id="unrecommended"></div>
+            </div>
           </div>
-          <div class="col-sm-9">
+          <div class="col-sm-5">
+            <div class="form-group">
+              <h4><%= @professor.user.name %></h4>
+              <%= @professor.email %>
+            </div>
+            <%= link_to "Entrar em contato pelo facebook","http://www.facebook.com/#{@professor.user.uid}",:target => "_blank" if @professor.user.uid.present? %>
+            <hr>
             <p>
-              <strong>Price:</strong>
+              <strong>Preço:</strong>
               <%= @professor.price %>
             </p>
-
             <p>
-              <strong>Nota pi:</strong>
-              <%= @professor.nota_pi %>
+              <strong>Horário:</strong>
+              <%= simple_format @professor.horario %>
             </p>
-
+            <% if @professor.description.present? %>
             <p>
-              <strong>Nota pf:</strong>
-              <%= @professor.nota_pf %>
+              <strong>O que faz dele um bom professor:</strong>
+              <%= simple_format @professor.description %>
             </p>
-
-            <p>
-              <strong>Cr:</strong>
-              <%= @professor.cr %>
-            </p>
-
-            <p>
-              <strong>Ranking:</strong>
-              <%= @professor.ranking %>
-            </p>
-
-            <p>
-              <strong>Horario:</strong>
-              <%= @professor.horario %>
-            </p>
-
-            <%= @professor.semester %>
-          <% @professor.courses.each do |course| %>
-          <%= course.name %> | <%= course.nota_pi %> | <%= course.nota_pf %><br>
-          <% end %>
-          
+            <% end %>
           </div>
+          <div class="col-sm-5">
+            <h4>Matérias</h4>
+            <table class="table table table-hover">
+              <thead>
+                <tr>
+                  <th>Curso</th>
+                  <th>PI</th>
+                  <th>PF</th>
+                </tr>
+              </thead>
+              <tbody>
+               <% @professor.courses.each do |course| %>
+               <tr>
+                <td><%= course.name %></td>
+                <td><%= course.nota_pi %></td>
+                <td><%= course.nota_pf %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
-
-        <%= link_to 'Edit', edit_professor_path(@professor) %> |
-        <%= link_to 'Back', professors_path %>
       </div>
-    </div> 
+    </div>
   </div>
+</div>
+</div> 
 </div>

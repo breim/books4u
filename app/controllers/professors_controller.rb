@@ -1,6 +1,7 @@
 class ProfessorsController < ApplicationController
-  before_action :set_professor, only: [:show, :edit, :update, :destroy]
+  before_action :set_professor, only: [:show, :edit, :update, :destroy,:recommended, :unrecommended]
   before_action :check_user_professor, only: [:new, :create]
+  before_action :check_security, only: [:edit, :update, :destroy]
   before_action :authenticate_user!
 
   respond_to :html
@@ -39,6 +40,24 @@ class ProfessorsController < ApplicationController
     respond_with(@professor)
   end
 
+  def unrecommended
+    current_user.toggle_follow!(@professor)
+    @professor.unrecommended_count = @professor.followers(User).count
+    @professor.save!
+    respond_to do |format|               
+      format.js
+    end
+  end
+
+  def recommended
+    current_user.toggle_like!(@professor)
+    @professor.recommended_count = @professor.likers(User).count
+    @professor.save!
+    respond_to do |format|               
+      format.js
+    end
+  end
+
   private
   def set_professor
     @professor = Professor.find(params[:id])
@@ -51,7 +70,13 @@ class ProfessorsController < ApplicationController
     end
   end
 
+  def check_security
+    if @user_has_professor = Professor.where(:user_id => current_user.id).first.id != current_user.id && current_user.admin == false
+      redirect_to professors_path, notice: "Você não é o dono do cadastro !!"
+    end
+  end
+
   def professor_params
-    params.require(:professor).permit(:user_id, :email, :price, :nota_pi, :nota_pf, :cr, :ranking, :horario, :image, :major, :semester, courses_attributes: [:id, :name,:nota_pf,:nota_pi, :done, :_destroy])
+    params.require(:professor).permit(:name,:user_id, :email, :price, :nota_pi, :nota_pf, :cr, :ranking, :horario, :image, :major, :semester,:description, courses_attributes: [:id, :name,:nota_pf,:nota_pi, :done, :_destroy])
   end
 end

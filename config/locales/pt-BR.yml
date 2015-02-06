@@ -222,6 +222,7 @@ pt-BR:
         image: "Sua foto para apresentação"
         semester: "Semestre que você cursa"
         major: "Graduação"
+        description: "O que faz de você um bom professor?"
       product:
         name: "Nome do produto"
         description: "Descrição"

@@ -1,0 +1,47 @@
+<%= render 'navbar/user' %>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="container-box">
+			<% if @search.count > 0 %>
+				Encontrados <%= @search.count %> resultados
+			<% else %>
+				Sem resultados para a pesquisa =(
+			<% end %>
+			<hr>
+
+			<table class="table table table-hover">
+				<thead>
+              		<tr>
+              			<th></th>
+		                <th><small>Professor</small></th>
+		                <th><small>Matéria</small></th>
+		                <th><small>PI</small></th>
+		                <th><small>PF</small></th>
+              		</tr>
+            	</thead>
+				 <tbody>
+				<% @search.each do |result| %>
+				<tr>
+					<% if result.search_model == "Course" %>
+						<% @course = Course.find(result.search_id) %>
+						<td><%= link_to (image_tag @course.professor.image.url(:thumb)),professor_path(@course.professor) %></td>
+						<td><%= link_to @course.professor.name,professor_path(@course.professor) %></td>
+						<td><%= @course.name %></td>
+						<td><%= @course.nota_pi %></td>
+						<td><%= @course.nota_pf %></td>
+					<% else %> 
+						<% @professor = Professor.find(result.search_id) %>
+						<td><%= link_to (image_tag @professor.image.url(:thumb)),professor_path(@professor) %></td>
+						<td><%= link_to @professor.name,professor_path(@professor) %></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					<% end %>
+				</tr>
+				<% end %>
+			</table>
+			</div>
+		</div>
+	</div>
+</div>

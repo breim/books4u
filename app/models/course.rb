@@ -6,4 +6,9 @@ class Course < ActiveRecord::Base
 
 	# Relations
 	belongs_to :professor
+
+	# After and before validations
+  	include Searchable
+
+
 end

@@ -1,0 +1,25 @@
+<%= render 'navbar/user' %>
+<div class="container">
+	<div class="row">
+		<%= render 'menus/menu_admin'%>
+		<div class="col-sm-9">
+			<div class="container-box">
+				<div class="row">
+					<legend>Total de cadastros</legend>
+					<div class="col-sm-6">
+						<center>
+							<h3>Usuários</h3>
+							<h4><%= @users_count %></h4>
+						</center>
+					</div>
+					<div class="col-sm-6">
+						<center>
+							<h3>Professores</h3>
+							<h4><%= @professors_count %></h4>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

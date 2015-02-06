@@ -1,0 +1,6 @@
+<div class="col-sm-3">
+	<ul class="list-group">
+		<%= link_to "#{icon('graduation-cap')} Professores <span class='badge'> #{Professor.all.count}</span></a>".html_safe, admin_professors_path,:class=>"list-group-item" %>
+		<%= link_to "#{icon('user')} Usuários <span class='badge'> #{User.all.count}</span></a>".html_safe,admin_users_path ,:class=>"list-group-item" %>
+	</ul>
+</div>

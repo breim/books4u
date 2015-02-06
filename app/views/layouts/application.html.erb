@@ -27,3 +27,14 @@
     <%= yield %>
   </body>
 </html>
+<script>
+  $('#search').typeahead({
+    name: 'name',
+    valueKey: 'name',
+    remote: '/searches/autocomplete?query=%QUERY',
+    minLength: 2
+  });
+  $('#search').on('typeahead:selected', function (obj, datum, name) {
+    window.location.href="/search?utf8=✓&q=" + datum.name;
+  });
+</script>
